@@ -1,2 +1,17 @@
 .container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
+
+  div {
+    &:nth-child(1) {
+      display: flex;
+      flex: 2;
+      justify-content: flex-end;
+    }
+    &:nth-child(2) {
+      display: flex;
+    }
+  }
 }

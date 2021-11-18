@@ -1,0 +1,64 @@
+$orangeColor: #f05b41;
+$darkGray: darkslategray;
+
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 16px;
+
+  fa-icon {
+    color: darkgray;
+  }
+
+  span {
+    color: $darkGray;
+    font-weight: normal;
+  }
+
+  .banner {
+    margin-left: 20px;
+  }
+
+  .details {
+    width: 100%;
+    padding-left: 16px;
+
+    .movie-name {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .rate {
+      color: $orangeColor;
+
+      fa-icon {
+        color: $orangeColor;
+      }
+    }
+
+    .time {
+      display: flex;
+      align-items: center;
+
+      .year {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.description {
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: justify;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.margin-bottom-14 {
+  margin-bottom: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
