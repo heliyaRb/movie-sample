@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="list-section">
+    <!-- search section -->
+    <div class="input-part">
+      <div class="icon-search">
+        <fa-icon
+          [icon]="searchIcon"
+          [classes]="['search-icon-class']"
+        ></fa-icon>
+      </div>
+      <input
+        type="search"
+        autocomplete="off"
+        placeholder="Search"
+        class="search-input"
+      />
+    </div>
+
+    <!-- list-box section -->
+    <div class="list-box">
+      <div class="list">
+        <div class="movie-card" *ngFor="let number of [0, 1, 2, 3]">
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BMTE0MjgzMjk5MzdeQTJeQWpwZ15BbWU4MDM5OTM1MTYx._V1_SX300.jpg"
+            class="img-cover"
+          />
+          <div class="detail">
+            <div class="title">this is film</div>
+            <div class="year">2013</div>
+            <div class="type">film</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
