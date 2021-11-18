@@ -1,4 +1,7 @@
 <div class="container">
   <app-detail></app-detail>
-  <app-listing></app-listing>
+  <app-listing
+    [listData]="movieList"
+    (cardClick)="onCardClick($event)"
+  ></app-listing>
 </div>

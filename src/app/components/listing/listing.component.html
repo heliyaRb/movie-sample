@@ -15,19 +15,19 @@
         class="search-input"
       />
     </div>
-
     <!-- list-box section -->
     <div class="list-box">
       <div class="list">
-        <div class="movie-card" *ngFor="let number of [0, 1, 2, 3]">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BMTE0MjgzMjk5MzdeQTJeQWpwZ15BbWU4MDM5OTM1MTYx._V1_SX300.jpg"
-            class="img-cover"
-          />
+        <div
+          class="movie-card"
+          *ngFor="let movie of dataList"
+          (click)="onCardCliced(movie.imdbID)"
+        >
+          <img src="{{ movie.posterUrl }}" class="img-cover" />
           <div class="detail">
-            <div class="title">this is film</div>
-            <div class="year">2013</div>
-            <div class="type">film</div>
+            <div class="title">{{ movie.title }}</div>
+            <div class="year">{{ movie.year }}</div>
+            <div class="type">{{ movie.type }}</div>
           </div>
         </div>
       </div>
