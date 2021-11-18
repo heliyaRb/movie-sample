@@ -7,9 +7,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailComponent } from './components/detail/detail.component';
 import { ListingComponent } from './components/listing/listing.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, DetailComponent, ListingComponent],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
