@@ -8,6 +8,7 @@ export class MovieDetailModel {
   Director!: string;
   Writer!: string;
   Actors!: string;
+  Country!: string;
   Plot!: string;
   Language!: string;
   Awards!: string;
