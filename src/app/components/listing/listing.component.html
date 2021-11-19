@@ -20,9 +20,9 @@
       <div class="list">
         <div
           class="movie-card"
-          *ngFor="let movie of dataList; let i = index"
-          (click)="onCardCliced({ imdbId: movie.imdbID, id: i })"
-          [ngClass]="{ selected: selectedItemId === i }"
+          *ngFor="let movie of dataList"
+          (click)="onCardClicked(movie.imdbID)"
+          [ngClass]="{ selected: selectedItemId === movie.imdbID }"
         >
           <img src="{{ movie.posterUrl }}" class="img-cover" />
           <div class="detail">

@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {}
 
   onCardClick(imdbId: string) {
-    console.log(imdbId, 'parent');
     this.imdbId = imdbId;
   }
 }

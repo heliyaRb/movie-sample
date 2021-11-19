@@ -6,6 +6,9 @@
 
   <!-- left part -->
   <div>
-    <app-listing (cardClick)="onCardClick($event)"></app-listing>
+    <app-listing
+      (cardClick)="onCardClick($event)"
+      [defaultSelectedIndex]="0"
+    ></app-listing>
   </div>
 </div>

@@ -23,7 +23,7 @@ import { MovieDetailService } from 'src/app/core/services/movie-detail.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent implements OnInit, OnChanges {
+export class DetailComponent implements OnInit {
   starIcon = faStar;
   calendarIcon = faCalendar;
   clockIcon = faClock;
@@ -33,18 +33,23 @@ export class DetailComponent implements OnInit, OnChanges {
   moneyIcon = faMoneyBill;
   movieData!: MovieDetailModel;
   movieDetailListener$: Subscription | undefined;
+  _imdbId!: string;
 
-  @Input('imdbId') imdbId!: string;
+  get imdbId() {
+    return this._imdbId;
+  }
+  @Input() set imdbId(value: string) {
+    this._imdbId = value;
+    if (value != undefined) {
+      this.movieDetailListener$ = this.movieDetailService
+        .getMovieDetail(this.imdbId)
+        .subscribe((result) => {
+          this.movieData = result;
+        });
+    }
+  }
 
   constructor(private movieDetailService: MovieDetailService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.movieDetailListener$ = this.movieDetailService
-      .getMovieDetail(this.imdbId ? this.imdbId : 'tt6966692 ')
-      .subscribe((result) => {
-        this.movieData = result;
-      });
-  }
 
   ngOnInit(): void {}
 
