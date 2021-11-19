@@ -11,7 +11,7 @@ export class MovieService {
   constructor(private http: HttpClient) {}
 
   searchMovie(query: string): Observable<MovieModel[]> {
-    const url = `http://www.omdbapi.com/?s=${query}&apikey=fc635fb1`;
+    const url = `http://www.omdbapi.com/?s=${query}`;
 
     return this.http.get(url).pipe(
       map<any, MovieModel[]>((response: any) => {

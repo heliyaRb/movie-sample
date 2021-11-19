@@ -11,7 +11,7 @@ export class MovieDetailService {
   constructor(private http: HttpClient) {}
 
   getMovieDetail(id: string): Observable<MovieDetailModel> {
-    const url = `http://www.omdbapi.com/?i=${id}&apikey=fc635fb1`;
+    const url = `http://www.omdbapi.com/?i=${id}`;
 
     return this.http.get(url).pipe(
       map<any, MovieDetailModel>((result: any) => {
