@@ -1,55 +1,52 @@
 <div class="container">
-  <img
-    class="banner"
-    src="https://m.media-amazon.com/images/M/MV5BMTE0MjgzMjk5MzdeQTJeQWpwZ15BbWU4MDM5OTM1MTYx._V1_SX300.jpg"
-  />
+  <img class="banner" src="{{ movieData?.Poster }}" />
 
   <!-- movie-details -->
   <div class="details">
-    <div class="movie-name">The Green Inferno</div>
+    <div class="movie-name">{{ movieData?.Title }}</div>
     <div class="rate margin-bottom-14">
       <fa-icon [icon]="starIcon"></fa-icon>
       <fa-icon [icon]="starIcon"></fa-icon>
       <fa-icon [icon]="starIcon"></fa-icon>
-      5.3
+      {{ movieData?.imdbRating }}
     </div>
     <div class="time margin-bottom-14">
       <div class="year">
         <fa-icon [icon]="calendarIcon"></fa-icon>
-        2013
+        {{ movieData?.Year }}
       </div>
       <div class="run-time">
         <fa-icon [icon]="clockIcon"></fa-icon>
-        100 min
+        {{ movieData?.Runtime }}
       </div>
     </div>
     <div class="country margin-bottom-14">
       <fa-icon [icon]="countryIcon"></fa-icon>
-      United States
+      {{ movieData?.Country }}
     </div>
     <div class="language margin-bottom-14">
       <fa-icon [icon]="languageIcon"></fa-icon>
-      English, Spanish
+      {{ movieData?.Language }}
     </div>
     <div class="award margin-bottom-14">
       <fa-icon [icon]="awardIcon"></fa-icon>
-      1 win & 6 nominations
+      {{ movieData?.Awards }}
     </div>
     <div class="money margin-bottom-14">
       <fa-icon [icon]="moneyIcon"></fa-icon>
-      $7,192,291
+      {{ movieData?.BoxOffice }}
     </div>
     <div class="money margin-bottom-14 bold">
-      <span> Genre:</span> Adventure, Horror
+      <span> Genre:</span> {{ movieData?.Genre }}
     </div>
     <div class="money margin-bottom-14 bold">
-      <span> Director:</span> "Eli Roth
+      <span> Director:</span> {{ movieData?.Director }}
     </div>
     <div class="money margin-bottom-14 bold">
-      <span> Writer:</span> Eli Roth, Guillermo Amoedo
+      <span> Writer:</span> {{ movieData?.Writer }}
     </div>
     <div class="money margin-bottom-14 bold">
-      <span> Actors:</span> Lorenza Izzo, Ariel Levy, Aaron Burns
+      <span> Actors:</span> {{ movieData?.Actors }}
     </div>
   </div>
 </div>
@@ -57,6 +54,5 @@
 <!-- movie-summery -->
 <div class="description">
   <span> summery: </span>
-  A group of student activists travels to the Amazon to save the rain forest and
-  soon discover that they are not alone, and that no good deed goes unpunished.
+  {{ movieData?.Plot }}
 </div>
