@@ -10,6 +10,7 @@ import { MovieModel } from 'src/app/core/models/movie.model';
 export class ListingComponent {
   searchIcon = faSearch;
   dataList: MovieModel[] = [];
+  selectedItemId!: number;
 
   @Input('listData') listData: MovieModel[] = [];
   @Output('cardClick') cardClick = new EventEmitter<string>();
@@ -22,5 +23,9 @@ export class ListingComponent {
 
   onCardCliced(id: string) {
     this.cardClick.emit(id);
+  onCardCliced(data: any) {
+    this.selectedItemId = data.id;
+    this.cardClick.emit(data.imdbId);
+  }
   }
 }
