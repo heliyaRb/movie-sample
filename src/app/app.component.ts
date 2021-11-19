@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MovieModel } from './core/models/movie.model';
+import { MovieDetailService } from './core/services/movie-detail.service';
 import { MovieService } from './core/services/movie.service';
 
 @Component({
@@ -10,32 +11,14 @@ import { MovieService } from './core/services/movie.service';
 })
 export class AppComponent implements OnInit {
   title = 'movie-list';
-  _movieList: MovieModel[] = [];
-  moviesListener$: Subscription | undefined;
+  imdbId!: string;
 
-  get movieList() {
-    return this._movieList;
-  }
-
-  constructor(private movieService: MovieService) {
-    this.initialList();
-  }
+  constructor() {}
 
   ngOnInit() {}
 
-  initialList() {
-    this.moviesListener$ = this.movieService
-      .searchMovie('green')
-      .subscribe((result) => {
-        this._movieList = result;
-      });
-  }
-
-  ngOnDestroy() {
-    this.moviesListener$?.unsubscribe();
-  }
-
-  onCardClick(id: string) {
-    console.log(id);
+  onCardClick(imdbId: string) {
+    console.log(imdbId, 'parent');
+    this.imdbId = imdbId;
   }
 }

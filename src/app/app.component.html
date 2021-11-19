@@ -1,14 +1,11 @@
 <div class="container">
   <!-- right part -->
   <div>
-    <app-detail></app-detail>
+    <app-detail [imdbId]="imdbId"></app-detail>
   </div>
 
   <!-- left part -->
   <div>
-    <app-listing
-      [listData]="movieList"
-      (cardClick)="onCardClick($event)"
-    ></app-listing>
+    <app-listing (cardClick)="onCardClick($event)"></app-listing>
   </div>
 </div>
