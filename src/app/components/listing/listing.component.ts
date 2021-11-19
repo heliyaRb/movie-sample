@@ -6,7 +6,13 @@ import {
   Output,
 } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+} from 'rxjs/operators';
 import { MovieModel } from 'src/app/core/models/movie.model';
 import { MovieService } from 'src/app/core/services/movie.service';
 
@@ -16,9 +22,11 @@ import { MovieService } from 'src/app/core/services/movie.service';
   styleUrls: ['./listing.component.scss'],
 })
 export class ListingComponent implements AfterViewInit {
+  private querySubject: Subject<string> = new Subject();
+  private readonly moviesListener$: Subscription = new Subscription();
+
   searchIcon = faSearch;
   dataList: MovieModel[] = [];
-  moviesListener$: Subscription | undefined;
   selectedItemId!: string;
 
   @Input('defaultSelectedIndex') defaultSelectedIndex: number | undefined;
@@ -26,16 +34,29 @@ export class ListingComponent implements AfterViewInit {
 
   constructor(private movieService: MovieService) {}
 
-  ngAfterViewInit(): void {
-    this.moviesListener$ = this.movieService
-      .searchMovie('green')
-      .subscribe((result) => {
-        this.dataList = result;
+  ngOnInit() {
+    this.moviesListener$.add(
+      this.querySubject
+        .pipe(
+          filter((item) => item.length > 2),
+          debounceTime(300),
+          distinctUntilChanged(),
+          switchMap((query) => {
+            console.log(`search by ${query}`);
+            return this.movieService.searchMovie(query);
+          })
+        )
+        .subscribe((list) => {
+          this.dataList = list;
+          if (this.defaultSelectedIndex != undefined) {
+            this.onCardClicked(this.dataList[this.defaultSelectedIndex].imdbID);
+          }
+        })
+    );
+  }
 
-        if (this.defaultSelectedIndex != undefined) {
-          this.onCardClicked(result[this.defaultSelectedIndex].imdbID);
-        }
-      });
+  ngAfterViewInit(): void {
+    this.querySubject.next('green');
   }
 
   onCardClicked(imdbId: string) {
@@ -43,7 +64,12 @@ export class ListingComponent implements AfterViewInit {
     this.cardClick.emit(imdbId);
   }
 
+  onSearchQueryChange(event: any) {
+    let param = event.target.value;
+    this.querySubject.next(param);
+  }
+
   onDestroy() {
-    this.moviesListener$?.unsubscribe();
+    this.moviesListener$.unsubscribe();
   }
 }
