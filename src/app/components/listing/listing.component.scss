@@ -36,6 +36,7 @@
     .list-box {
       .list {
         height: 80vh;
+        overflow: auto;
         overflow: overlay;
 
         .movie-card {
