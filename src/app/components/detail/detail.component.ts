@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faCalendar,
   faClock,
@@ -49,7 +50,12 @@ export class DetailComponent implements OnInit {
     }
   }
 
-  constructor(private movieDetailService: MovieDetailService) {}
+  constructor(
+    private movieDetailService: MovieDetailService,
+    private router: Router
+  ) {
+    console.log(this.router?.getCurrentNavigation()?.extras?.state?.imdbId);
+  }
 
   ngOnInit(): void {}
 

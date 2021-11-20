@@ -5,6 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Subject, Subscription } from 'rxjs';
 import {
@@ -32,7 +33,7 @@ export class ListingComponent implements AfterViewInit {
   @Input('defaultSelectedIndex') defaultSelectedIndex: number | undefined;
   @Output('cardClick') cardClick = new EventEmitter<string>();
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit() {
     this.moviesListener$.add(
@@ -62,6 +63,7 @@ export class ListingComponent implements AfterViewInit {
   onCardClicked(imdbId: string) {
     this.selectedItemId = imdbId;
     this.cardClick.emit(imdbId);
+    this.router.navigate([`detail/${imdbId}`], { state: { imdbId: imdbId } });
   }
 
   onSearchQueryChange(event: any) {

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { MovieModel } from './core/models/movie.model';
-import { MovieDetailService } from './core/services/movie-detail.service';
-import { MovieService } from './core/services/movie.service';
+import { DetailComponent } from './components/detail/detail.component';
 
 @Component({
   selector: 'app-root',
@@ -19,5 +16,10 @@ export class AppComponent implements OnInit {
 
   onCardClick(imdbId: string) {
     this.imdbId = imdbId;
+  }
+
+  onOutletLoaded(component: DetailComponent) {
+    if (component instanceof DetailComponent) component.imdbId = this.imdbId;
+    console.log(this.imdbId);
   }
 }
